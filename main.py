@@ -18,6 +18,8 @@ from linebot.models import (
 )
 
 import config
+import datetime
+import calendar
 
 app = Flask(__name__)
 
@@ -58,9 +60,22 @@ def worker():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+     msg = event.message.text
+    print(msg)
+    msg = msg.encode('utf-8')
+    date=datetime.datetime.now().date()
+    if msg=="#日期":
+        d = date.year+" 年 "+date.month+" 月 "+date.day+" 日 "
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=d))
+    if msg=="#月曆":
+        cal = calendar.month(date.year, date.month)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cal))
+    if msg=="hi" or "你好":
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="郁：10月要好好加油呢!"))
+    else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+
+
 
 
 if __name__ == "__main__":
