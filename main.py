@@ -71,8 +71,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cal))
     if msg=="hi" or "你好":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="郁：10月要好好加油呢!"))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+    
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
 
 
 
