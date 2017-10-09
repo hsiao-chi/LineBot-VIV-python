@@ -60,8 +60,7 @@ def worker():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-     msg = event.message.text
-    print(msg)
+    msg = event.message.text
     msg = msg.encode('utf-8')
     date=datetime.datetime.now().date()
     if msg=="#日期":
