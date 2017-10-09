@@ -69,9 +69,8 @@ def handle_message(event):
     if msg=="#月曆":
         cal = calendar.month(date.year, date.month)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=cal))
-    if msg=="hi" or "你好":
+    if msg=="hi":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="郁：10月要好好加油呢! "+msg))
-    
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=msg))
 
 
